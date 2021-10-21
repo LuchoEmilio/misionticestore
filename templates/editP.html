@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block indice%} <li class="breadcrumb-item active"><a href="#">Editar Producto</a></li>{%endblock%}
+
+{% block contenido %}
+
+<div class="login">
+    <div class="container-fluid">
+        <div class="row" id="fmregistroSup">
+            <div class="col-lg-6" id="fmregistro">    
+                <div class="register-form">
+                    <div class="row">
+                        <div class="col-25">
+                          <label for="fname">Buscar Codigo</label>
+                        </div>
+                            <div class="col-75">
+                              <input type="text" id="lname" name="lastname" placeholder=" ">
+                              <div class="col-76">
+                                <input type="submit" value="Buscar">
+                            </div>
+                                                                
+                            </div>
+                            
+                            
+                        </div>
+                        <div class="container">
+                            <form action="/action_page.php">
+                            <div class="row">
+                              <div class="col-25">
+                                <label for="fname">Editar Precio</label>
+                              </div>
+                              <div class="col-75">
+                                <input type="text" id="fname" name="firstname" placeholder="Precio...">
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-25">
+                                <label for="lname">Editar Categoria</label>
+                              </div>
+                              <div class="col-75">
+                                <input type="text" id="lname" name="lastname" placeholder="categoria...">
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-25">
+                                <label for="descuento">Descuento</label>
+                              </div>
+                              <div class="col-75">
+                                <select id="descuento" name="descuento">
+                                    <option value=" "> </option>
+                                    <option value="10">10%</option>
+                                    <option value="20">20%</option>
+                                    <option value="30">30%</option>
+                                    <option value="40">40%</option>
+                                    <option value="50">50%</option>
+                                    <option value="60">60%</option>
+                                    <option value="70">70%</option>
+                                    <option value="80">80%</option>
+                                    </select>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-25">
+                                <label for="subject">Descripcion</label>
+                              </div>
+                              <div class="col-75">
+                                <textarea id="subject" name="subject" placeholder=" " style="height:200px"></textarea>
+                              </div>
+                             
+                            </div>
+                            <br>
+                            <div class="col-md-12" id="btnenviar">
+                              <button class="btn">Enviar</button>
+                          </div>
+                            </form>
+                          </div>
+                        <div class="col-md-12">
+                            <p></p>
+                        </div>
+                        
+                        
+                       
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<!-- Login End -->
+
+{% endblock %}

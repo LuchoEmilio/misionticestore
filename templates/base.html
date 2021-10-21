@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>E Store - eCommerce Team 3</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="eCommerce HTML " name="keywords">
+        <meta content="eCommerce HTML " name="description">
+<!--  img/favicon.ico" rel="icon"  -->
+        <!-- Favicon -->
+      <!--  <link href="img/favicon.ico" rel="icon"> --> 
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap" rel="stylesheet">
+
+        <!-- CSS Libraries -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href=".././static/lib/slick/slick.css" rel="stylesheet">
+        <link href=".././static/lib/slick/slick-theme.css" rel="stylesheet">
+
+       <!--<link href="lib/slick/slick.css" rel="stylesheet">  --> 
+
+       <!--<link href="lib/slick/slick-theme.css" rel="stylesheet">-->
+        
+<!-- <link href="css/style.css" rel="stylesheet">  -->
+        <!-- Template Stylesheet -->
+        <link href=".././static/css/style.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <!-- Top bar Start -->
+        <div class="top-bar">
+            <div class="container-fluid">
+                <div class="row">
+                    <!--div class="col-sm-6"> //comentado Joanpa 
+                        <i class="fa fa-envelope"></i>
+                        support@email.com
+                    </div>
+                    <div class="col-sm-6"> 
+                        <i class="fa fa-phone-alt"></i>
+                        +012-345-6789
+                    </div-->
+                </div>
+            </div>
+        </div>
+        <!-- Top bar End -->
+        
+        <!-- Nav Bar Start -->
+        <div class="nav">
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+                    <a href="#" class="navbar-brand">MENU</a>
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav mr-auto">
+                            <a href="/" class="nav-item nav-link">Inicio</a>
+                            <a href="/productos" class="nav-item nav-link">Productos</a>
+                            {% if 'nombre' in session %}
+                            <a href="/calproducto" class="nav-item nav-link">Calificar Productos</a>
+                            {% endif %}
+                            <a href="/listadeseos" class="nav-item nav-link">Lista de Deseos</a>
+                            <a href="/carcompras" class="nav-item nav-link">Carrito de Compras</a>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Otros</a>
+                                <div class="dropdown-menu">
+                                    <a href="/soporte" class="dropdown-item">Soporte</a>
+                                    <a href="/contacto" class="dropdown-item">Contacto</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="navbar-nav ml-auto">
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Cuenta de usuario</a>
+                                <div class="dropdown-menu">
+                                    {% if 'nombre' in session %}
+                                        <div><a href='/logout' class="dropdown-item">Salir</a></div>
+                                        <div><a href='/ ' class="dropdown-item">Editar Perfil</a></div>
+                                        {% else %}
+                                    <a href="/login" class="dropdown-item">Ingresar</a>
+                                    <a href="/registro" class="dropdown-item">Registro</a>
+                                    <a href="/administrador" class="dropdown-item">Cuenta</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- Nav Bar End -->      
+        
+        <!-- Bottom Bar Start -->
+        <div class="bottom-bar">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-md-3">
+                        <div class="logo">
+                            <a href="index.html">
+                                <!--<img src="../img/logo.png" alt="Logo"> -->
+                                <img src=".././static/img/logo.png" alt="Logo">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h1>{{ titulo }}</h1>
+                     </div>
+                    <!--div class="col-md-6">
+                        <div class="search">
+                            <input type="text" placeholder="Search">
+                            <button><i class="fa fa-search"></i></button>
+                        </div>
+                    </div-->
+                    <!--div class="col-md-3">
+                        <div class="user">
+                            <a href="wishlist.html" class="btn wishlist">
+                                <i class="fa fa-heart"></i>
+                                <span>(0)</span>
+                            </a>
+                            <a href="cart.html" class="btn cart">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span>(0)</span>
+                            </a>
+                        </div>
+                    </div-->
+                </div>
+            </div>
+        </div>
+        <!-- Bottom Bar End --> 
+        
+        <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item active"><a href="#">Inicio</a></li>
+                    {% block indice%}  {%endblock%}
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+
+
+        {% block contenido %}
+        
+
+        {% endblock %}
+
+
+
+
+
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 copyright">
+                        <p>Página Desarrollada como proyecto MisiónTIC 2021</p>
+                    </div>
+
+                    <div class="col-md-6 template-by">
+                        <img src="data:image/png;base64,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" alt="Logo MisionTIC" style="width:80px;height:45px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Bottom End -->       
+        
+        <!-- Back to Top -->
+        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+        
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src=".././static/lib/easing/easing.min.js"></script>
+        <script src=".././static/lib/slick/slick.min.js"></script>
+
+
+
+
+        <!--<script src="lib/easing/easing.min.js"></script>
+        <script src="lib/slick/slick.min.js"></script> -->
+        
+        <!-- Template Javascript -->
+        <script src=".././static/js/main.js"></script>
+
+        <!--<script src="js/main.js"></script>-->
+    </body>
+</html>
