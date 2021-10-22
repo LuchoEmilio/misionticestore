@@ -3,6 +3,7 @@
 
 {% block contenido %}
 
+<form action='/editarP' method='POST'>  
 <div class="login">
     <div class="container-fluid">
         <div class="row" id="fmregistroSup">
@@ -13,79 +14,121 @@
                           <label for="fname">Buscar Codigo</label>
                         </div>
                             <div class="col-75">
-                              <input type="text" id="lname" name="lastname" placeholder=" ">
+                              <input type="text" id="id_p" name="id_p" placeholder=" ">
                               <div class="col-76">
                                 <input type="submit" value="Buscar">
-                            </div>
+                              </div>
                                                                 
                             </div>
-                            
-                            
                         </div>
-                        <div class="container">
-                            <form action="/action_page.php">
-                            <div class="row">
-                              <div class="col-25">
-                                <label for="fname">Editar Precio</label>
-                              </div>
-                              <div class="col-75">
-                                <input type="text" id="fname" name="firstname" placeholder="Precio...">
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-25">
-                                <label for="lname">Editar Categoria</label>
-                              </div>
-                              <div class="col-75">
-                                <input type="text" id="lname" name="lastname" placeholder="categoria...">
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-25">
-                                <label for="descuento">Descuento</label>
-                              </div>
-                              <div class="col-75">
-                                <select id="descuento" name="descuento">
-                                    <option value=" "> </option>
-                                    <option value="10">10%</option>
-                                    <option value="20">20%</option>
-                                    <option value="30">30%</option>
-                                    <option value="40">40%</option>
-                                    <option value="50">50%</option>
-                                    <option value="60">60%</option>
-                                    <option value="70">70%</option>
-                                    <option value="80">80%</option>
-                                    </select>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-25">
-                                <label for="subject">Descripcion</label>
-                              </div>
-                              <div class="col-75">
-                                <textarea id="subject" name="subject" placeholder=" " style="height:200px"></textarea>
-                              </div>
-                             
-                            </div>
-                            <br>
-                            <div class="col-md-12" id="btnenviar">
-                              <button class="btn">Enviar</button>
-                          </div>
-                            </form>
-                          </div>
-                        <div class="col-md-12">
-                            <p></p>
-                        </div>
-                        
-                        
-                       
-                    </div>
                 </div>
-            </div>
-            
-        </div>
-    </div>
-</div>
-<!-- Login End -->
+               {% if 'id_producto' in session  %}
+                  {% for pro in res %}
+                         
+                  <div class="container">
+                    <form action='/update' method='POST'>
+                    <div class="row">
+                      <div class="col-25">
+                      
+                        <label for="fname">Nombre del Producto</label>
+                      </div>
+                                                                 
+                      <div class="col-75">
+                        <input type="text" id="nom_prod" name="nom_prod", value={%print(res[0][1])%} >
+                      </div>
+                     
+                    </div>
+                    <div class="row">
+                      <div class="col-25">
+                        <label for="lname">ID Producto</label>
+                      </div>
+                      <div class="col-75">
+                        <label for="id_producto" id="id_producto" name="id_producto">{%print(res[0][0])%}></label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-25">
+                        <label for="lname">Tipo de Producto</label>
+                      </div>
+                      <div class="col-75">
+                        <input type="text" id="tipo_pro" name="tipo_pro", value={%print(res[0][2])%}>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-25">
+                        <label for="lname">Cantidad Producto</label>
+                      </div>
+                      <div class="col-75">
+                        <input type="text" id="cantidad_p" name="cantidad_p" , value={%print(res[0][3])%}>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                          <label for="lname">Cantidad Minima</label>
+                        </div>
+                        <div class="col-75">
+                          <input type="text" id="can_min" name="can_min" , value={%print(res[0][4])%}>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-25">
+                          <label for="lname">Cantidad Maxima</label>
+                        </div>
+                        <div class="col-75">
+                          <input type="text" id="can_max" name="can_max" , value={%print(res[0][5])%}>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-25">
+                          <label for="fname">Precio de Venta</label>
+                        </div>
+                        <div class="col-75">
+                          <input type="text" id="pre_ven" name="pre_ven" , value={%print(res[0][6])%}>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-25">
+                          <label for="fname">Calificación</label>
+                        </div>
+                        <div class="col-75">
+                            <label>{%print(res[0][7])%}</label>
+                        </div>
+                      </div>
+                    
+                    <div class="row">
+                      <div class="col-25">
+                        <label for="subject">Descripcion</label>
+                      </div>
+                      <div class="col-75">
+                        <textarea id="descri" name="descri"  style="height:200px">{%print(res[0][8])%}
 
-{% endblock %}
+                        </textarea>
+                      </div>
+                     
+                    </div>
+                    
+                    <br>
+                    <div class="col-md-12" id="btnenviar">
+                      <button class="btn">Enviar</button>
+                  </div>
+                    </form>
+                  </div>
+                <div class="col-md-12">
+                    <p></p>
+                </div>
+                
+
+                    {% endfor %}
+                {% endif %}
+                                                 
+                    </div>
+                  </div>
+              </div>
+              
+          </div>
+      </div>
+  </div>
+  </form>
+  <!-- Login End -->
+  
+  {% endblock %}

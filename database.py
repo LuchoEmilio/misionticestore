@@ -1,5 +1,5 @@
 import sqlite3
-URL_DB = 'data1.db'
+URL_DB = 'Eccomerce.db'
 
 def seleccion(sql) -> list:
     """ Ejecuta una consulta de selección sobre la base de datos """

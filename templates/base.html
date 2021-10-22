@@ -57,6 +57,9 @@
 
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto">
+                            {% if 'user_admin' in session  %}
+                            <a href="/dashboardn.html" class="nav-item nav-link">Inicio</a>
+                            {% endif %}
                             <a href="/" class="nav-item nav-link">Inicio</a>
                             <a href="/productos" class="nav-item nav-link">Productos</a>
                             {% if 'nombre' in session %}
@@ -82,7 +85,7 @@
                                         {% else %}
                                     <a href="/login" class="dropdown-item">Ingresar</a>
                                     <a href="/registro" class="dropdown-item">Registro</a>
-                                    <a href="/administrador" class="dropdown-item">Cuenta</a>
+                                    <a href="/administrador" class="dropdown-item">Administrador</a>
                                     {% endif %}
                                 </div>
                             </div>

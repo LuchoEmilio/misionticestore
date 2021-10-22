@@ -26,3 +26,18 @@ class Login(FlaskForm):
     ema = EmailField('email *', validators = [InputRequired(message='Indique su Email')])
     con = PasswordField('Contrasena *', validators = [InputRequired(message='Indique la Contraseña')])
     btn = SubmitField('Login')
+
+class Producto(FlaskForm):
+    nomp = TextField('nombre *', validators = [InputRequired(message='Indique el nombre')])
+    tipop = TextField('tipo *', validators = [InputRequired(message='Indique el tipo')])
+    can = TextField('cantidad *', validators = [InputRequired(message='Indique la cantidad')])
+    canmin = TextField('can_minima *', validators = [InputRequired(message='Indique la cantidad minima')])
+    canmax = TextField('can_max *', validators = [InputRequired(message='Indique la cantidad maxima')])
+    pre = TextField('precio*', validators = [InputRequired(message='Indique el precio')])
+    cali = TextField('calificacion *', validators = [InputRequired(message='Indique la calificacion')])
+    des = TextField('descripcion *', validators = [InputRequired(message='Indique la descripcion')])
+    btn = SubmitField('Enviar')
+
+class EditarP(FlaskForm):
+    id_pro = TextField('Codigo *', validators = [InputRequired(message='Indique el Codigo')])
+    btn = SubmitField('Buscar')
