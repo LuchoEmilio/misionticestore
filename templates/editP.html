@@ -43,7 +43,7 @@
                         <label for="lname">ID Producto</label>
                       </div>
                       <div class="col-75">
-                        <label for="id_producto" id="id_producto" name="id_producto">{%print(res[0][0])%}></label>
+                        <label for="lname" id="id_producto" name="id_producto">{%print(res[0][0])%}</label>
                       </div>
                     </div>
                     <div class="row">
@@ -114,7 +114,9 @@
                     </form>
                   </div>
                 <div class="col-md-12">
-                    <p></p>
+                  {% for msg in get_flashed_messages() %}
+                  <div class="col-md-12">{{ msg }}</div>
+                  {% endfor %} 
                 </div>
                 
 

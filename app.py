@@ -264,7 +264,7 @@ def updatepro():
     else:
         # Recuperar los datos del formulario
         nom = escape(request.form['nom_prod'])
-        id = escape(request.form['id_producto'])
+        id = (request.form['id_producto'])
         tipo_p = escape(request.form['tipo_p'])
         can = escape(request.form['cantidad_p'])
         canmin = escape(request.form['can_min'])
@@ -298,15 +298,15 @@ def updatepro():
             flash('ERROR: Debe suministrar una descripcion ')
             swerror = True
         if not swerror:
-            sql = "update productos set nombre_pro, tipo_pro, cantidad, cantidad_min, cantidad_max, precio_venta, descripcion) VALUES (?, ?, ?, ?, ?, ?, ?) where id_producto='{id}'"
+            sql = f"update productos set nombre_pro= '{nom}', tipo_pro= '{tipo_p}', cantidad= '{can}', cantidad_min= '{canmin}', cantidad_max= '{canmax}', precio_venta = '{pre}', descripcion='{des}' where id_producto='{id}'"
 
-            res = accion(sql,(nom, tipo_p, can, canmin, canmax, pre,des))
+            res = seleccion(sql)
             if res!=0:
-                flash('INFO: Datos almacenados con exito en PRODUCTO')
+                flash('INFO: Datos actualizados con exito en PRODUCTO')
             else:
                 flash('ERROR EN PRODUCTO: Por favor reintente')
 
-    return render_template("agregarprod.html")
+    return render_template('editarP.html', form=form,titulo=' ')
 
 
 
