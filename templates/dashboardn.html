@@ -127,46 +127,37 @@
                                 <thead class="thead-dark">
                                     <tr>
                                         <th>CODIGO</th>
-                                        <th>TITULO</th>
-                                        <th>PRECIO</th>
-                                        <th>DISPONIBLES</th>
-                                        <th>VENDIDOS</th>
-                                          <th>ESTADO</th>
+                                        <th>NOMBRE</th>
+                                        <th>TIPO</th>
+                                        <th>CANTIDAD</th>
+                                        <th>CANTIDAD MIN.</th>
+                                        <th>CANTIDAD MAX.</th>
+                                        <th>PRECIO VENTA</th>
+                                        <th>CALIFICACION</th>
+                                        <th>DESCRIPCION</th>
                                     </tr>
                                 </thead>
+                                {% for pro in res %}
                                 <tbody>
                                     <tr>
-                                        <td>0001</td>
-                                        <td>Producto uno</td>
-                                        <td>$111.111</td>
-                                        <td>500 unds</td>
-                                        <td>1200 unds</td>
-                                        <td>Activo</td>
+                                        <td>{%print(pro[0])%}</td>
+                                        <td>{%print(pro[1])%}</td>
+                                        <td>{%print(pro[2])%}</td>
+                                        <td>{%print(pro[3])%}</td>
+                                        <td>{%print(pro[4])%}</td>
+                                        <td>{%print(pro[5])%}</td>
+                                        <td>{%print(pro[6])%}</td>
+                                        <td>{%print(pro[7])%}</td>
+                                        <td>{%print(pro[8])%}</td>
                                     </tr>
-                                    <tr>
-                                        <td>0002</td>
-                                        <td>Producto dos</td>
-                                        <td>$222.222</td>
-                                        <td>222 unds</td>
-                                        <td>5000 unds</td>
-                                        <td>Activo</td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td>0003</td>
-                                        <td>Producto tres</td>
-                                        <td>$333.333</td>
-                                        <td>333 unds</td>
-                                        <td>124 unds</td>
-                                        <td>Activo</td>
-                                        
-                                    </tr>
+                                    
                                 </tbody>
+                                {% endfor %}
                             </table>
 <hr>
             <button class="btn"><a href="/agregarP">Agregar</a></button>
             <button class="btn"><a href="/editarP">Editar</a></button>
-            <button class="btn">Eliminar</button>
+            <button class="btn"><a href="/deleteP">Eliminar</a></button>
                         </div>
 
     

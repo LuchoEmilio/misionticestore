@@ -1,16 +1,18 @@
 import os
 from re import escape
 from flask import Flask, render_template, redirect, session, flash, request
+from flask_wtf import form
 from werkzeug.security import check_password_hash, generate_password_hash
 from database import accion, seleccion
 
-from forms import Login, Registro, Producto, EditarP
+from forms import Login, Registro, Producto, EditarP,Productoedit
 from utils import email_valido, pass_valido 
 
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
-
+id_usuario_califica=0
+sesion_iniciada= False
 
 @app.route("/", methods= ["GET"])
 def inicio():
@@ -118,6 +120,8 @@ def registro():
 
 @app.route("/login", methods=["GET","POST"])
 def login():
+    global id_usuario_califica
+    global sesion_iniciada
     form = Login()
     if  request.method == "GET": #Si la ruta es accedida a través del método GET entonces
 	    return render_template('login.html', form=form,titulo=' ')
@@ -139,6 +143,8 @@ def login():
             session['contrasena'] = con
             session['tipo_user'] = res[0][3]
             session['nombre'] = res[0][4]
+            id_usuario_califica = res[0][0]
+            sesion_iniciada= True
 
             if session['tipo_user']== 'user_admin':
                 return render_template('dashboardn.html',form=form, titulo= f"Bienvenido {session['nombre']}", messages =res)
@@ -253,71 +259,79 @@ def editarP():
             session['calificacion'] = res[0][7]
             session['descripcion'] = res[0][8]
     
-            flash('ERROR: Producto Encontrado')
-            return render_template("editP.html", res=res, titulo= f"Bienvenido {session['calificacion']}", messages =res)
+            flash(' Producto Encontrado')
+            return render_template("updateP.html", res=res, titulo= f"Bienvenido {session['calificacion']}", messages =res)
 
 @app.route("/updatepro", methods=[ "GET","POST"])
 def updatepro():
-    form = Producto()
-    if  request.method == "GET": #Si la ruta es accedida a través del método GET entonces
-	    return render_template('editarP.html', form=form,titulo=' ')
-    else:
+    form = Productoedit()
+    if  request.method == "POST": #Si la ruta es accedida a través del método GET entonces
+	  
         # Recuperar los datos del formulario
-        nom = escape(request.form['nom_prod'])
+        nom = (request.form['nom_prod'])
+        #id = session['id_producto']
         id = (request.form['id_producto'])
-        tipo_p = escape(request.form['tipo_p'])
-        can = escape(request.form['cantidad_p'])
-        canmin = escape(request.form['can_min'])
-        canmax= escape(request.form['can_max'])
-        pre = escape(request.form['pre_ven'])
-        des = escape(request.form['descri'])
+        tipo_p = (request.form['tipo_pro'])
+        can = (escape(request.form['cantidad_p']))
+        canmin = (escape(request.form['can_min']))
+        canmax= (escape(request.form['can_max']))
+        pre = (escape(request.form['pre_ven']))
+        des = (request.form['descri'])
 
-        swerror = False
-        if nom==None or len(nom)==0:
-            flash('ERROR: Debe suministrar un Nombre')
-            swerror = True
-        if tipo_p==None or len(tipo_p)==0 :
-            flash('ERROR: Debe suministrar un Tipo de Producto')
-            swerror = True
-        swerror = False
-        if can==None or len(can)==0:
-            flash('ERROR: Debe suministrar una Cantidad')
-            swerror = True
-        if canmin==None or len(canmin)==0 :
-            flash('ERROR: Debe suministrar un cantidad minima ')
-            swerror = True
-        swerror = False
-        if canmax==None or len(canmax)==0:
-            flash('ERROR: Debe suministrar una canitdad maxima')
-            swerror = True
-        if pre==None or len(pre)==0 :
-            flash('ERROR: Debe suministrar un Precio ')
-            swerror = True
-        swerror = False
-        if des==None or len(des)==0 :
-            flash('ERROR: Debe suministrar una descripcion ')
-            swerror = True
-        if not swerror:
-            sql = f"update productos set nombre_pro= '{nom}', tipo_pro= '{tipo_p}', cantidad= '{can}', cantidad_min= '{canmin}', cantidad_max= '{canmax}', precio_venta = '{pre}', descripcion='{des}' where id_producto='{id}'"
+        sql = f"UPDATE productos SET nombre_pro='{nom}', tipo_pro='{tipo_p}', cantidad='{can}', cantidad_min='{canmin}', cantidad_max='{canmax}', precio_venta='{pre}', descripcion='{des}' WHERE id_producto='{id}'"
 
-            res = seleccion(sql)
-            if res!=0:
-                flash('INFO: Datos actualizados con exito en PRODUCTO')
-            else:
-                flash('ERROR EN PRODUCTO: Por favor reintente')
+        res = seleccion(sql)
+        if res!=0:
+            flash('INFO: Datos actualizados con exito en PRODUCTO')
+        else:
+         flash('ERROR EN PRODUCTO: Por favor reintente')
 
-    return render_template('editarP.html', form=form,titulo=' ')
+    return render_template('dashboardn.html',form=form, titulo= '')
 
+@app.route("/deleteP", methods=[ "GET","POST"])
+def deleteP():
+    form = EditarP()
+    if  request.method == "GET": #Si la ruta es accedida a través del método GET entonces
+	    return render_template('deletep.html', form=form,titulo=' ')
+    else:
+     id = escape(request.form['id_p'])
+
+    sql = f'DELETE FROM productos WHERE id_producto = "{id}"'
+    res = seleccion(sql)
+    if len(res)==0:
+        flash(' Producto Eliminado')
+        return render_template("deletep.html", form=form, titulo= " ")
+    else:
+     flash('ERROR: Codigo Incorrecto')
+    return render_template("deletep.html", form=form, titulo= " ")
 
 
 
 @app.route("/calproducto", methods=[ "GET","POST"])
 def calproducto():
-    return render_template("calproducto.html")
+    global id_usuario_califica
+    if  request.method == "GET":
+        return render_template("calproducto.html", titulo= f"ID_Usuario: {id_usuario_califica}" )
+    else:
+        cali = escape(request.form['cal_pro'])
+        sql = "INSERT INTO ScoreProduct(User_ID, Score,) VALUES (?,?)"
+
+        res = accion(sql,(cali, id_usuario_califica))
+        if res!=0:
+           flash('INFO: Calificacion Exitosa PRODUCTO')
+            
+        else:
+                flash('ERROR EN PRODUCTO: Por favor reintente')
+
+    return render_template("calproducto.html", res=res, titulo= f"Producto Calificado", messages =res)
+
+
 
 @app.route('/logout')
 def logout():
+    global sesion_iniciada
     session.clear()
+    sesion_iniciada= False
     return redirect('/')
 
 

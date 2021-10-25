@@ -1,0 +1,18 @@
+USUARIO ADMIN:
+admin@estore.com
+CLAVE:
+Prueba123
+
+USUARIO FINAL
+usuario@gmail.com	
+CLAVE:
+Prueba123
+
+
+------------------------------- 
+TIMESTAMP
+CURRENT_TIMESTAMP
+
+#FF6F61;
+
+#000000

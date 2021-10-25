@@ -3,6 +3,7 @@
 {% block contenido %}
 
   <!-- Product List Start -->
+  
   <div class="product-view">
     <div class="container-fluid">
         <div class="row">
@@ -85,11 +86,12 @@
                             <div class="product-title">
                                 <a href="#">Calificar Producto</a>
                                 <div class="ratting">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"id="cal_pro" name=" cal_pro">1</i>
+                                    <i class="fa fa-star"id="cal_pro" name=" cal_pro">2</i>
+                                    <i class="fa fa-star"id="cal_pro" name=" cal_pro">3</i>
+                                    <i class="fa fa-star"id="cal_pro" name=" cal_pro">4</i>
+                                    <i class="fa fa-star"id="cal_pro" name=" cal_pro">5</i>
+                                   
                                 </div>
                             </div>
                             <div class="product-image">
@@ -97,9 +99,11 @@
                                     <img src="../static/img/product-2.jpg" alt="Product Image">
                                 </a>
                                 <div class="product-action">
-                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                    <a href="#"><i class="fa fa-heart"></i></a>
-                                    <a href="#"><i class="fa fa-search"></i></a>
+                                    <i class="fa" id="cal_pro" name=" cal_pro">1</i>
+                                    <i class="fa" id="cal_pro" name=" cal_pro">2</i>
+                                    <i class="fa" id="cal_pro" name=" cal_pro">3</i>
+                                    <i class="fa" id="cal_pro" name=" cal_pro">4</i>
+                                    <i class="fa" id="cal_pro" name=" cal_pro">5</i>
                                 </div>
                             </div>
                             <div class="product-price">
@@ -182,7 +186,11 @@
                                 </a>
                                 <div class="product-action">
                                     <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                    {% if sesion_iniciada %}
+                                    <a href="#"><i class="fa fa-heart" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" ></i></a>
+                                    {%else%}
+                                    <a href="#"><i class="fa fa-heart" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" ></i></a>
+                                    {%endif%}
                                     <a href="#"><i class="fa fa-search"></i></a>
                                 </div>
                             </div>
@@ -316,9 +324,7 @@
                             <li class="page-item active"><a class="page-link" href="#">1</a></li>
                             <li class="page-item"><a class="page-link" href="#">2</a></li>
                             <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Próximo</a>
-                            </li>
+                            <li class="page-item"><a class="page-link" href="#">Próximo</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -326,7 +332,50 @@
         </div>
     </div>
 </div>
+<div id="id01" class="modal">
+      
+  <form class="modal-content animate" action="/calproducto" method="post">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="./../static/img/score.png" alt="Avatar" class="avatar">
+    </div>
 
+    <div class="container">
+      <label for="uname"><b>Escoje la Calificacion</b></label>
+      <select ide="" name=" " class="form-control" >
+        <option value="1" ide="tipo_ide" name="tipo_ide">1</option>
+        <option value="2" ide="tipo_ide" name="tipo_ide">2</option>
+        <option value="3" ide="tipo_ide" name="tipo_ide">3</option>
+        <option value="4" ide="tipo_ide" name="tipo_ide">4</option>
+        <option value="5" ide="tipo_ide" name="tipo_ide">5</option>
+        
+        </select>
+
+      <label for="psw"><b></b></label>
+      <!--<input type="password" placeholder="Enter Password" name="psw" required>-->
+        
+      <button type="submit">Enviar</button>
+      
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancelar</button>
+      <!--<span class="psw">Forgot <a href="#">password?</a></span>-->
+    </div>
+  </form>
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
 
 
 

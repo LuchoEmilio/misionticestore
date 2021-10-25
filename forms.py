@@ -41,3 +41,13 @@ class Producto(FlaskForm):
 class EditarP(FlaskForm):
     id_pro = TextField('Codigo *', validators = [InputRequired(message='Indique el Codigo')])
     btn = SubmitField('Buscar')
+
+class Productoedit(FlaskForm):
+    nom = TextField('nombre *', validators = [InputRequired(message='Indique el nombre')])
+    tipo_p = TextField('tipo *', validators = [InputRequired(message='Indique el tipo')])
+    can = TextField('cantidad *', validators = [InputRequired(message='Indique la cantidad')])
+    canmin = TextField('can_minima *', validators = [InputRequired(message='Indique la cantidad minima')])
+    canmax = TextField('can_max *', validators = [InputRequired(message='Indique la cantidad maxima')])
+    pre = TextField('precio*', validators = [InputRequired(message='Indique el precio')])
+    des = TextField('descripcion *', validators = [InputRequired(message='Indique la descripcion')])
+    btn = SubmitField('Enviar')

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block indice%} <li class="breadcrumb-item active"><a href="#">Eliminar Producto</a></li>{%endblock%}
+
+{% block contenido %}
+
+<form action='/deleteP' method='POST'>  
+<div class="login">
+    <div class="container-fluid">
+        <div class="row" id="fmregistroSup">
+            <div class="col-lg-6" id="fmregistro">    
+                <div class="register-form">
+                    <div class="row">
+                        <div class="col-25">
+                          <label for="fname">Buscar Codigo</label>
+                        </div>
+                            <div class="col-75">
+                              <input type="text" id="id_p" name="id_p" placeholder=" ">
+                              <div class="col-76">
+                                <input type="submit" value="Eliminar">
+                              </div>
+                              <div class="col-md-12" id="btnenviar">
+                                <button class="btn"><a href="/dash">Regresar</a></button>
+                          </div>                               
+                            </div>
+                        </div>
+                </div>
+              
+                <div class="col-md-12">
+                  {% for msg in get_flashed_messages() %}
+                  <div class="col-md-12">{{ msg }}</div>
+                  {% endfor %} 
+                </div>
+                
+
+                                         
+                    </div>
+                  </div>
+              </div>
+              
+          </div>
+      </div>
+  </div>
+  </form>
+  <!-- Login End -->
+  
+  {% endblock %}

@@ -26,6 +26,7 @@
 <!-- <link href="css/style.css" rel="stylesheet">  -->
         <!-- Template Stylesheet -->
         <link href=".././static/css/style.css" rel="stylesheet">
+        <link href=".././static/css/style2.css" rel="stylesheet">
     </head>
 
     <body>
@@ -59,6 +60,9 @@
                         <div class="navbar-nav mr-auto">
                             {% if 'user_admin' in session  %}
                             <a href="/dashboardn.html" class="nav-item nav-link">Inicio</a>
+                            {% endif %}
+                            {% if 'user_final' in session  %}
+                            <a href="/indexuser.html" class="nav-item nav-link">Inicio</a>
                             {% endif %}
                             <a href="/" class="nav-item nav-link">Inicio</a>
                             <a href="/productos" class="nav-item nav-link">Productos</a>
