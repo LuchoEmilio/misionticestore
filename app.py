@@ -15,6 +15,8 @@ id_usuario_califica=0
 sesion_iniciada= False
 
 @app.route("/", methods= ["GET"])
+@app.route("/index", methods= ["GET"])
+@app.route("/home", methods= ["GET"])
 def inicio():
   return render_template('index.html')
 
